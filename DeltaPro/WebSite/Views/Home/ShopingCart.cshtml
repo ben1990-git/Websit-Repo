@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Models.Product>
+@inject BLL.Interfaces.IUserService UserService
+@{
+    ViewData["Title"] = "ShopingCart";
+    ViewBag.Headline = "Shoping Cart";
+}
+
+@{
+
+    if (UserService.HasCookie())
+    {
+        foreach (var item in Model)
+        {
+            if (item != null)
+            {
+
+    <div class="btn-lg btn-block text-dark btn-dark  bg-success">
+        Item:  <a class="text-info" asp-controller="Home" asp-action="ProductDetails" asp-route-id="@item.Id">@item.Title </a>
+        original price:  @item.Price
+        @if (item.Price >= 10)
+        {
+            item.Price -= (item.Price / 10);
+        }
+        Your Price: @item.Price
+        <a class="text-warning" asp-controller="Home" asp-action="RemoveFormUserCart" asp-route-id="@item.Id">  Remove </a>
+    </div>
+            }
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <div class="btn-lg btn-block text-dark btn-dark  bg-success">
+                    Item:  <a class="text-info" asp-controller="Home" asp-action="ProductDetails" asp-route-id="@item.Id">@item.Title </a>
+                    original price:  @item.Price  Your Price: @item.Price
+                    <a class="text-warning" asp-controller="Home" asp-action="RemoveFormUserCart" asp-route-id="@item.Id">  Remove </a>
+                </div>
+            }
+        }
+    }
+    <br />
+    <a class="btn-lg btn-block text-white btn-link " asp-controller="Home" asp-action="ChackOut" onclick="finish()"> Chackout </a>
+}
+

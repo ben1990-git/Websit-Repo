@@ -1,0 +1,50 @@
+﻿@model ProductViewModel
+@{
+   
+    ViewBag.Headline= "Add New Product";
+}
+
+<form method="post" id="ProductForm" enctype="multipart/form-data" asp-controller="Home" asp-action="AddNewProduct">
+
+    <label asp-for="title"></label>
+    <br />
+    <input asp-for="title" />
+    <span asp-validation-for="title"></span>
+    <br />
+    <label asp-for="ShortDiscription"></label>
+    <br />
+    <input asp-for="ShortDiscription" />
+    <span asp-validation-for="ShortDiscription"></span>
+    <br />
+    <label asp-for="LongDiscription"></label>
+    <br />
+    <input asp-for="LongDiscription" />
+    <span asp-validation-for="LongDiscription"></span>
+    <br />
+    <label asp-for="Price"></label>
+    <br />
+    <input asp-for="Price" />
+    <span asp-validation-for="Price"></span>
+    <br />
+    <input name="Picture1" type="file" accept="image/jpeg,.bmp,.png" />
+    <label asp-for="Picture1"></label>
+    <br />
+    <input name="Picture2" type="file" accept="image/jpeg,.bmp,.png" />
+    <label asp-for="Picture2"></label>
+    <br />
+    <input name="Picture3" type="file" accept="image/jpeg,.bmp,.png" />
+    <label asp-for="Picture3"></label>
+    <br />
+    <input type="submit" id="btn1" value="post" />
+    <br />
+</form>
+<br />
+@{
+    if (ViewData.ContainsKey("Aprove"))
+    {
+        <div class="alert alert-success" role="alert">
+
+            <a href="@Url.Action("Index", "Home")" class="btn-lg btn-block btn-outline-success text-white ">Product added sucssfully go back to main page</a>
+        </div>
+    }
+}

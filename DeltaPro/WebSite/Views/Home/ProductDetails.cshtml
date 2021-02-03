@@ -1,0 +1,56 @@
+﻿@model Models.Product
+@{
+    ViewData["Title"] = "ProductDetails";
+    ViewBag.Headline = "Product Details";
+}
+
+<div class="card  bg-light">
+    <span>
+        @{
+            if (Model.Picture1 != null)
+            {
+                <img src="data:image/png;base64, @Convert.ToBase64String(Model.Picture1)" height="200">
+            }
+            else
+            {
+                <img src="~/Pics/NoImage.png" />
+            }
+        }
+        @{
+            if (Model.Picture2 != null)
+            {
+                <img src="data:image/png;base64, @Convert.ToBase64String(Model.Picture2)" height="200">
+            }
+            else
+            {
+                <img src="~/Pics/NoImage.png" />
+            }
+        }
+        @{
+            if (Model.Picture3 != null)
+            {
+                <img src="data:image/png;base64, @Convert.ToBase64String(Model.Picture3)" height="200">
+            }
+            else
+            {
+                <img src="~/Pics/NoImage.png" />
+            }
+        }
+    </span>
+    @if (Model.Owner != null)
+    {
+        <h1>Tital: @Model.Title</h1>
+        <p>Owner: @Model.Owner.FirstName  @Model.Owner.LastName</p>
+        <p>BirthDate: @Model.Owner.BirthDate.ToString("dd/MM/yyyy")</p>
+        <p>Email: @Model.Owner.Email</p>
+        <p> Short discription: @Model.ShortDiscription</p>
+    }
+    <p> price: @Model.Price</p>
+    <p>Date add: @Model.Date.ToString("dd/MM/yyyy")</p>
+    <p> Full discription: @Model.LongDiscription</p>
+    <a asp-action="AddToUserCart" asp-controller="Home" asp-route-id="@Model.Id">Add to cart </a>
+    <a asp-action="Index" asp-controller="Home">Back</a>
+</div>
+
+
+

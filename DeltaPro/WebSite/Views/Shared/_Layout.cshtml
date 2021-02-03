@@ -1,0 +1,56 @@
+﻿@inject BLL.Interfaces.IUserService userService
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Website</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header>
+        <dive><p class="text-center text-danger bg-dark display-2 jumbotron ">@ViewBag.Headline <img class="mypic" src="~/Pics/00205-3D-art-logo-design-free-logos-online-011.png" /> </dive>
+    </header>
+    <div class="container bg-secondary">
+        <div class="row">
+            <div class="col-2  bg-light">
+                @{await Html.RenderPartialAsync("_Login", new UserLoginViewModel()); }
+                <br />
+                <div>
+                    <a asp-controller="Home" asp-action="Index" class="btn-lg  btn-block btn-dark text-white bg-success">All Products</a>
+                    @{
+                        if (userService.HasCookie())
+                        {
+                            <a asp-controller="Home" asp-action="Update" class="btn-lg  btn-block btn-dark text-white bg-success">Update</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Home" asp-action="SignUp" class="btn-lg  btn-block btn-dark text-white bg-success">SignUp</a>
+                        }
+                        if (userService.HasCookie())
+                        {
+                            <a asp-controller="Home" asp-action="AddNewProduct" class="btn-lg  btn-block btn-dark text-white bg-success"> Add new item</a>
+                        }
+                    }
+                    <a asp-controller="Home" asp-action="ShopingCart" class="btn-lg  btn-block btn-dark text-white bg-success">Cart</a>
+                    <a asp-controller="Home" asp-action="ChackOut" class="btn-lg  btn-block btn-dark text-white bg-success">Admin</a>
+                </div>
+            </div>
+            <div class="col-10 addScroll">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
+
+
+
+

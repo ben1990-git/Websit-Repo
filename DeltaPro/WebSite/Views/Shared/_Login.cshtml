@@ -1,0 +1,31 @@
+﻿@model UserLoginViewModel
+@inject BLL.Interfaces.IUserService userService
+@{
+
+}
+@{
+    if (!userService.HasCookie())
+    {
+    <form id="1" asp-action="_Login" asp-controller="Auth" method="post">
+        <label asp-for="UserName"></label>
+        <input class="btn-group-lg btn-block" asp-for="UserName" />
+        <span class="text-danger" asp-validation-for="UserName"></span>
+        <br />
+        <label asp-for="Password"></label>
+        <input class="btn-group-lg btn-block" asp-for="Password" type="password" />
+        <span class="text-danger" asp-validation-for="Password"></span>
+        <br />
+        @Html.ValidationMessage("User", "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <input class="btn-lg btn-block btn-dark text-white bg-success" type="submit" value="Login" />
+    </form>
+    }
+    else
+    {
+        var UserName = userService.GetRegisterUser(userService.ReadUserCookie()).UserName;
+        @Html.Greet(UserName)
+      <a asp-controller="Auth"  asp-action="LogOut" class="btn-lg  btn-block btn-dark text-white bg-success">LogOut</a>
+    }
+}
+

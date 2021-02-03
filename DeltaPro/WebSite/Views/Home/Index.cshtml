@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product>
+@{ 
+    ViewBag.Headline = "All Products";
+}
+
+
+<div class="text-white  p-2 btn-lg bg-dark text-center btn-block ">
+    <a asp-controller="Home" asp-action="Index" asp-route-orderby="Date" >Order by date</a>
+
+</div>
+<div class="text-white btn-lg p-2 text-center align-items-center  bg-dark btn-block">
+    <a  asp-controller="Home" asp-action="Index" asp-route-orderby="Name">Order by name</a>
+</div>
+
+<div>
+    @{foreach (var pro in Model)
+        {
+            @await Html.PartialAsync("_Product", pro);
+            <br />
+            <br />
+        }
+    }
+</div>

@@ -1,0 +1,62 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Update";
+    ViewBag.Headline = "Update";
+}
+
+
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                @Html.ValidationMessageFor(m => m.FirstName, "*", new { @class = "text-danger" })
+                <span asp-validation class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                @Html.ValidationMessageFor(m => m.LastName, "*", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                @Html.ValidationMessageFor(m => m.BirthDate, "*", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                @Html.ValidationMessageFor(m => m.Email, "*", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label Isdisabled"></label>
+                <input asp-for="UserName" class="form-control Isdisabled " />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                @Html.ValidationMessageFor(m => m.Password, "*", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="RetypePassword" class="control-label"></label>
+                <input asp-for="RetypePassword" class="form-control" />
+                @Html.ValidationMessageFor(m => m.RetypePassword, "*", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" asp-controller="Home" asp-action="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
